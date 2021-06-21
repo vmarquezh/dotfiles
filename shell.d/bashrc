@@ -4,7 +4,7 @@ if test -r ~/.config/dotfiles/config.sh; then
     test -z "$GITUSER" && source ~/.config/dotfiles/config.sh
 else
     echo "Dotfiles configuration file does not exist (~/.config/dotfiles/config.sh)."
-    echo "Some things from Dotfiles maight not work."
+    echo "Some things from Dotfiles may not work."
 fi
 
 # Sometimes I source ~/.bashrc or this file fir debugging.
