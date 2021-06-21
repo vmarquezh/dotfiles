@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if test -r "~/.config/dotfiles/config"; then
+if test -r ~/.config/dotfiles/config; then
     source ~/.config/dotfiles/config
 else
     echo "Dotfiles configuration file does not exist (~/.config/dotfiles/config)."
