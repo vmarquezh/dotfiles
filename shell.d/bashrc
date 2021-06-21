@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if test -r ~/.config/dotfiles/config; then
-    test -z "$GITUSER" && source ~/.config/dotfiles/config
+if test -r ~/.config/dotfiles/config.sh; then
+    test -z "$GITUSER" && source ~/.config/dotfiles/config.sh
 else
-    echo "Dotfiles configuration file does not exist (~/.config/dotfiles/config)."
+    echo "Dotfiles configuration file does not exist (~/.config/dotfiles/config.sh)."
     echo "Some things from Dotfiles maight not work."
 fi
 
