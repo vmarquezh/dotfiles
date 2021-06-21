@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#####################
+# Clone and configure Simple Zet
+
+# git clone https://github....
+
+if [[ ! "$PATH" == *".dotfiles/scripts/simple-zet"* ]]; then
+    PATH="~/.dotfiles/scripts/simple-zet${PATH:+:${PATH}}"
+    export PATH
+fi
+
+if test -r ~/.config/simple-zet/config.sh; then
+    test -z "$zet_zetP" && source ~/.config/simple-zet/config.sh
+else
+    echo "Simple Zet configuration file does not exist (~/.config/simple-zet/config.sh)."
+    echo "Some things from Simple Zet may not work."
+fi
+
