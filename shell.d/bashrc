@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PATH="~/.dotfiles/scripts/${PATH:+:${PATH}}"
+export PATH
+
