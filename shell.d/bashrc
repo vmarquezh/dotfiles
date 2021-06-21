@@ -7,6 +7,10 @@ else
     echo "Some things from Dotfiles maight not work."
 fi
 
-PATH="~/.dotfiles/scripts/${PATH:+:${PATH}}"
-export PATH
+# Sometimes I source ~/.bashrc or this file fir debugging.
+# This validations avoids polluting PATH.
+if [[ ! "$PATH" == *".dotfiles/scripts"* ]]; then
+    PATH="~/.dotfiles/scripts/${PATH:+:${PATH}}"
+    export PATH
+fi
 
