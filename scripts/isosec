@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# isosec is an alternate date format based on ISO 8601 standard
+# for date-time values where we are ommitting the dash ("-")
+# separators and the "T" separating date and time values.
+# The resulting format is then "YYYYMMDDhhmmss".
+
+date -u +"%Y%m%d%H%M%S"
