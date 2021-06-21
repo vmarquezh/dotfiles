@@ -7,7 +7,7 @@ else
     echo "Some things from Dotfiles may not work."
 fi
 
-# Sometimes I source ~/.bashrc or this file fir debugging.
+# Sometimes I source ~/.bashrc or this file for debugging.
 # This validations avoids polluting PATH.
 if [[ ! "$PATH" == *".dotfiles/scripts"* ]]; then
     PATH="~/.dotfiles/scripts/${PATH:+:${PATH}}"
