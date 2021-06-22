@@ -1,19 +1,24 @@
 #!/bin/sh
+set -e
+test -n "$BASH_DASHX" && set -x
 
-#####################
-# Clone and configure Simple Zet
+# This script is based on the work of Rob Muhlestein (@rwxrob).
+# See his scripts/zet at: https://github.com/rwxrob/dot/
 
-# git clone https://github....
+#ln -sf "$PWD/bashrc" "$HOME/.bashrc"
+#ln -sf "$PWD/shell.d" "$HOME/.shell.d"
+#ln -sf "$PWD/dircolors" "$HOME/.dircolors"
+#ln -sf "$PWD/inputrc" "$HOME/.inputrc"
+#ln -sf "$PWD/profile" "$HOME/.profile"
 
-if [[ ! "$PATH" == *".dotfiles/scripts/simple-zet"* ]]; then
-    PATH="~/.dotfiles/scripts/simple-zet${PATH:+:${PATH}}"
-    export PATH
-fi
+#mkdir -p "$HOME/.local/bin" || true
 
-if test -r ~/.config/simple-zet/config.sh; then
-    test -z "$zet_zetP" && source ~/.config/simple-zet/config.sh
-else
-    echo "Simple Zet configuration file does not exist (~/.config/simple-zet/config.sh)."
-    echo "Some things from Simple Zet may not work."
-fi
+mkdir ~/.config/ 2>/dev/null || true
+
+cp ~/.dotfiles/shell.d/config-default.sh ~/.config/dotfiles/config.sh
+
+for i in simple-zet; do
+  cd $i && ./setup
+  cd -
+done
 
