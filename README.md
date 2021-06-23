@@ -4,7 +4,7 @@
 
 **WARNING:** This is always a Work In Progress. It usually works without
 breaks but I am constantly adding and/or enhancing things and sometimes
-thing break.
+things DO break.
 
 License: Apache License 2.0
 See [LICENSE](LICENSE) for details.
