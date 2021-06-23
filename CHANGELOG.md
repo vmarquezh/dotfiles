@@ -8,6 +8,13 @@ The format is based on [Keep a Changeliog](https://keepachangelog.com/en/1.0.0/)
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.0-alpha.1] - 2021-06-23
+### Added
 - Added `shell.d/bashrc`. My Dotfiles entry point, called from `~/.bashrc`.
 - Added `config-default.sh`.
 - Added `isosec` script. Echoes UTC date/time in 'YYYYMMDDhhmmss' format.
@@ -18,14 +25,7 @@ The format is based on [Keep a Changeliog](https://keepachangelog.com/en/1.0.0/)
 - Added `git-subtrees` script. Gets a list of subtrees added to a Git repo.
 - Added vim/vimrc and it's setup script.
 
-### Changed
 
-### Fixed
-
-## [0.0.1] - YYY-MM-DD
-### Added
-
-
-[Unreleased]: https://github.com/vmarquezh/dotfiles/compare/v0.0.1...HEAD
-[0.0.1]: https://github.com/vmarquezh/dotfiles/releases/tag/v0.0.1
+[Unreleased]: https://github.com/vmarquezh/dotfiles/compare/v1.0-alpha.1...HEAD
+[1.0-alpha.1]: https://github.com/vmarquezh/dotfiles/releases/tag/v1.0-alpha.1
 
