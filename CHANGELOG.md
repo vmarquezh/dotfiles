@@ -1,6 +1,6 @@
 # Changelog
 
-Change log for VÃctor MÃrquez Dotfiles
+Change log for Víctor Márquez Dotfiles
 
 All notable changes to this project will be documented in this file.
 
@@ -21,9 +21,9 @@ The format is based on [Keep a Changeliog](https://keepachangelog.com/en/1.0.0/)
 - Added `urlencode` script. Echoes the input as URL Encoded.
 - Added `setup` script.
 - Added `simple-zet` setup script to integrate Simple Zet to my Dotfiles.
-- Added shell.d/bash_aliases w/some common and Git aliases.
+- Added `shell.d/bash_aliases` w/some common and Git aliases.
 - Added `git-subtrees` script. Gets a list of subtrees added to a Git repo.
-- Added vim/vimrc and it's setup script.
+- Added `vim/vimrc` and it's setup script.
 
 
 [Unreleased]: https://github.com/vmarquezh/dotfiles/compare/v1.0-alpha.1...HEAD
