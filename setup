@@ -17,7 +17,7 @@ mkdir ~/.config/ 2>/dev/null || true
 
 cp ~/.dotfiles/shell.d/config-default.sh ~/.config/dotfiles/config.sh
 
-for i in simple-zet; do
+for i in simple-zet vim; do
   cd $i && ./setup
   cd -
 done

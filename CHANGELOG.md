@@ -16,6 +16,7 @@ The format is based on [Keep a Changeliog](https://keepachangelog.com/en/1.0.0/)
 - Added `simple-zet` setup script to integrate Simple Zet to my Dotfiles.
 - Added shell.d/bash_aliases w/some common and Git aliases.
 - Added `git-subtrees` script. Gets a list of subtrees added to a Git repo.
+- Added vim/vimrc and it's setup script.
 
 ### Changed
 

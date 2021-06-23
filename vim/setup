@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rm ~/.vimrc 2>/dev/null
+ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+
+echo ".vimrc installed."
+
