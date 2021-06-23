@@ -10,6 +10,7 @@ The format is based on [Keep a Changeliog](https://keepachangelog.com/en/1.0.0/)
 ### Added
 
 ### Changed
+- Commented-out everything perl-depending and per-related from `vim/vimrc`.
 
 ### Fixed
 
