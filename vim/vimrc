@@ -1,3 +1,8 @@
+" ======================================
+" == Based on rwxrob's .vimrc
+" == I am in the review process of this file, in order to make my own,
+" == so, I consider this a draft.
+" ======================================
 " designed for vim 8+
 " (see https://rwx.gg/vi for help)
 let skip_defaults_vim=1
