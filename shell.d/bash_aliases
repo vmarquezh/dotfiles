@@ -19,7 +19,7 @@ alias glb='git log -n 20 --graph --pretty="%C(auto)%h %ci %ae %ce %d %s" --date=
 alias gla='git log -n 20 --graph --all --pretty="%C(auto)%h %ci %d %s" --date=default --date=local'
 # git log all blame
 alias glab='git log -n 20 --graph --all --pretty="%C(auto)%h %ci %ae %ce %d %s" --date=default --date=local'
-# git log simple (dates with no times)
+# git log simple (no merges and dates are shown with no times)
 alias gls='git log -n 20 --graph --pretty="%C(auto)%h %cd%d %s" --date=short --first-parent'
 # git log simpler (no dates)
 alias glr='git log -n 20 --oneline --graph --first-parent'
