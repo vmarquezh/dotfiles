@@ -1,0 +1,35 @@
+# Common
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias ..4='cd ../../../..'
+
+alias lsl='ls -l'
+alias lsla='ls -la'
+
+# Git
+
+# git log
+alias gl='git log -n 20 --graph --pretty="%C(auto)%h %ci %d %s" --date=default --date=local'
+# git log blame
+alias glb='git log -n 20 --graph --pretty="%C(auto)%h %ci %ae %ce %d %s" --date=default --date=local'
+# git log all
+alias gla='git log -n 20 --graph --all --pretty="%C(auto)%h %ci %d %s" --date=default --date=local'
+# git log all blame
+alias glab='git log -n 20 --graph --all --pretty="%C(auto)%h %ci %ae %ce %d %s" --date=default --date=local'
+# git log simple (dates with no times)
+alias gls='git log -n 20 --graph --pretty="%C(auto)%h %cd%d %s" --date=short --first-parent'
+# git log simpler (no dates)
+alias glr='git log -n 20 --oneline --graph --first-parent'
+# git log simplest (no dates, nor decorations)
+alias glt='git log -n 20 --graph --pretty="%C(auto)%h %s" --first-parent'
+
+alias status='git status -u'
+alias statuss='git status'
+alias diff='git diff'
+alias add='git add'
+alias commit='git commit'
+alias rebase='git rebase -i'
+
