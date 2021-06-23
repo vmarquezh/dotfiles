@@ -1,9 +1,10 @@
-# Víctor Márquez's Personal Dotfiles
+# Personal Dotfiles
 
 ![WIP](https://img.shields.io/badge/status-wip-red)
 
-**WARNING:** Work in progress. Please wait for a formal release before use
-(it is mostly non-usable, non-interesting at this point, anyway).
+**WARNING:** This is always a Work In Progress. It usually works without
+breaks but I am constantly adding and/or enhancing things and sometimes
+thing break.
 
 License: Apache License 2.0
 See [LICENSE](LICENSE) for details.
