@@ -13,6 +13,7 @@ The format is based on [Keep a Changeliog](https://keepachangelog.com/en/1.0.0/)
 - Commented-out everything perl-depending and per-related from `vim/vimrc`.
 
 ### Fixed
+- Fixes Vim's ModeMsg was invisible (changed it's color).
 
 ## [1.0-alpha.1] - 2021-06-23
 ### Added
