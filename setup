@@ -14,6 +14,7 @@ test -n "$BASH_DASHX" && set -x
 #mkdir -p "$HOME/.local/bin" || true
 
 mkdir ~/.config/ 2>/dev/null || true
+mkdir ~/.config/dotfiles 2>/dev/null || true
 
 cp ~/.dotfiles/shell.d/config-default.sh ~/.config/dotfiles/config.sh
 

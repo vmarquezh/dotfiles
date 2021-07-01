@@ -5,3 +5,10 @@ ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 
 echo ".vimrc installed."
 
+cat << EOF
+
+======================================================================
+Dot Files: ~/.vimrc has been softlinked to ~/.dotfiles/vim/vimrc
+
+EOF
+
