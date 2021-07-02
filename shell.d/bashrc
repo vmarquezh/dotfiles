@@ -1,5 +1,3 @@
-#!/bin/bash
-
 if test -r ~/.config/dotfiles/config.sh; then
     test -z "$GITUSER" && source ~/.config/dotfiles/config.sh
 else
@@ -33,5 +31,13 @@ pathprepend \
   $HOME/.local/bin/simple-zet \
   $HOME/.dotfiles/scripts
 
-test -r ~/.dotfiles/shell.d/bash_aliases && source ~/.dotfiles/shell.d/bash_aliases
+test -r ~/.dotfiles/shell.d/bash_aliases \
+  && . ~/.dotfiles/shell.d/bash_aliases
+
+test -r ~/.dotfiles-private/shell.d/bash_aliases \
+  && . ~/.dotfiles-private/shell.d/bash_aliases
+test -r ~/.dotfiles-local/shell.d/bash_aliases \
+  && . ~/.dotfiles-local/shell.d/bash_aliases
+test -r ~/.dotfiles-work/shell.d/bash_aliases \
+  && . ~/.dotfiles-work/shell.d/bash_aliases
 
