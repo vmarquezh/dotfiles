@@ -1,0 +1,28 @@
+#!/bin/sh
+
+ScriptDir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+. "$ScriptDir/../shell.d/functions-common"
+
+rm -rf "$HOME/.local/bin/simple-zet" 2>/dev/null || true
+
+if test -z "$vmDebug"; then
+  git clone --depth 1 file:///home/victor/simple-zet \
+    "$HOME/.local/bin/simple-zet" > /dev/null
+else
+  ln -sf "/home/victor/simple-zet" "$HOME/.local/bin/simple-zet"
+fi
+if test "$?" -ne 0; then
+  scriptReport "Dotfiles Simple Zet setup" \
+    "Could not clone Simple Zet GitHub repository.
+  Simple Zet has not been set up."
+  exit 1
+fi
+
+scriptReport "Dotfiles Simple Zet setup" \
+  "Simple Zet has been installed (Git-cloned) to:
+  ~/.local/bin/simple-zet"
+
+cd "$HOME/.local/bin/simple-zet/"
+./setup
+

@@ -1,14 +1,43 @@
 #!/bin/sh
 
-# Shows a list of subtrees added to the Git repo on the current directory.
+# Shows a list of subtrees within the local Git repository.
 #
 # As of today, Git does not have a command to show or list subtrees. this
 # script greps a `git log` looking for entries containing 'git-subtree-dir';
 # then produces a list of unique and sorted matches which is used to
 # `git rev-parse` to find the corresponding paths within the project.
 
-git log | grep git-subtree-dir | tr -d ' ' | cut -d ':' -f2 | sort | uniq | xargs -I {} bash -c 'if [ -d $(git rev-parse --show-toplevel)/{} ] ; then echo {}; fi'
+usage() {
+  cat << EOF
+git-subtrees Shows a list of subtrees within the local Git repository.
 
-# TODO: This is for --all
-#git log | grep git-subtree-dir | tr -d ' ' | cut -d ':' -f2 | sort | uniq
+Usage: git-subtrees [-a | --all]
+
+  -a | --all                 Include removed subtrees.
+  -h | --help                Show this help.
+EOF
+}
+
+SHOW_ALL="NO"
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -a | --all )
+            shift ; SHOW_ALL="YES"
+        ;;
+        -h | --help )
+            usage ; exit 0
+        ;;
+        * ) usage ; exit 1
+    esac
+    shift
+done
+
+LOG="$(git log | grep git-subtree-dir | tr -d ' ' | cut -d ':' -f2 | sort | uniq)"
+
+if test "$SHOW_ALL" != "YES"; then
+  while read IFS= line; do
+    if test -d $(git rev-parse --show-toplevel)/$line; then echo line; fi
+  done
+fi
 

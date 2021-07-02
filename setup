@@ -2,8 +2,15 @@
 set -e
 test -n "$BASH_DASHX" && set -x
 
+. "./shell.d/functions-common"
+
 # This script is based on the work of Rob Muhlestein (@rwxrob).
 # See his scripts/zet at: https://github.com/rwxrob/dot/
+
+if test "$PWD" !=  "$HOME/.dotfiles"; then
+  echo -e "\nDotfiles: Error, setup must be run from $HOME/.dotfiles directory."
+  exit 1
+fi
 
 #ln -sf "$PWD/bashrc" "$HOME/.bashrc"
 #ln -sf "$PWD/shell.d" "$HOME/.shell.d"
@@ -11,15 +18,21 @@ test -n "$BASH_DASHX" && set -x
 #ln -sf "$PWD/inputrc" "$HOME/.inputrc"
 #ln -sf "$PWD/profile" "$HOME/.profile"
 
-#mkdir -p "$HOME/.local/bin" || true
+mkdir -p "$HOME/.local" 2>/dev/null || true
+mkdir -p "$HOME/.local/bin" 2>/dev/null || true
 
-mkdir ~/.config/ 2>/dev/null || true
-mkdir ~/.config/dotfiles 2>/dev/null || true
+rm -rf "$HOME/.config/dotfiles" 2>/dev/null || true
+mkdir "$HOME/.config" 2>/dev/null || true
+mkdir "$HOME/.config/dotfiles" 2>/dev/null || true
 
-cp ~/.dotfiles/shell.d/config-default.sh ~/.config/dotfiles/config.sh
+cp "$HOME/.dotfiles/shell.d/config-default.sh" "$HOME/.config/dotfiles/config.sh"
 
-for i in simple-zet vim; do
+CurrDir="$PWD"
+
+for i in vim simple-zet; do
   cd $i && ./setup
-  cd -
+  cd "$CurrDir"
 done
+
+echo "\nsource $HOME/.dotfiles/shell.d/bashrc" >> "$HOME/.bashrc"
 
