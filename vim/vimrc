@@ -17,7 +17,7 @@ set autoindent
 set autowrite
 
 " activate line numbers
-set number
+" ---set number
 
 " turn col and row position on in bottom right
 set ruler " see ruf for formatting
@@ -27,6 +27,8 @@ set showmode
 
 set tabstop=2
 
+" vmarquezh: I like to start in paste mode:
+set paste
 "#######################################################################
 
 set softtabstop=2

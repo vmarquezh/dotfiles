@@ -1,7 +1,18 @@
 #!/bin/sh
 
-rm ~/.vimrc 2>/dev/null
-ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
+ScriptDir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 
-echo ".vimrc installed."
+. "$ScriptDir/../shell.d/functions-common"
+
+if [ -z "$(which vim)" -o -z "$(which vimtutor)" ]; then
+  scriptReport "Dotfiles Vim setup" "Need to install full vim.
+  vim has not been found. You may want to install the full vim
+  package and then run: ~/.dotfiles/vim/setup"
+  exit 1
+fi
+
+ln -sf "$HOME/.dotfiles/vim/vimrc" "$HOME/.vimrc"
+
+scriptReport "Dotfiles Vim setup" \
+  "~/.vimrc has been softlinked to ~/.dotfiles/vim/vimrc"
 
