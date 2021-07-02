@@ -34,3 +34,5 @@ for i in vim simple-zet; do
   cd "$CurrDir"
 done
 
+echo "\nsource $HOME/.dotfiles/shell.d/bashrc" >> "$HOME/.bashrc"
+
