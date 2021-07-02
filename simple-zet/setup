@@ -7,7 +7,7 @@ ScriptDir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 rm -rf "$HOME/.local/bin/simple-zet" 2>/dev/null || true
 
 if test -z "$vmDebug"; then
-  git clone --depth 1 file:///home/victor/simple-zet \
+  git clone --depth 1 https://github.com/vmarquezh/simple-zet.git \
     "$HOME/.local/bin/simple-zet" > /dev/null
 else
   ln -sf "/home/victor/simple-zet" "$HOME/.local/bin/simple-zet"
