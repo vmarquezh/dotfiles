@@ -1,0 +1,13 @@
+#!/bin/bash
+
+CURR="$(git rev-parse --abbrev-ref HEAD)"
+
+if test "$CURR" == "master"; then
+  echo "Current branch is 'master'. Can't do."
+fi
+
+git checkout master
+git merge "$CURR"
+git checkout "$CURR"
+git push origin master
+
