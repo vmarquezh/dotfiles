@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function sanitize_file_name {
+    echo -n $1 | perl -pe 's/[\?\[\]\/\\=<>:;,''"&\$#*()|~`!{}%+]//g;' -pe 's/[\r\n\t -]+/-/g;'
+}
+
+#filename="Wh00t? it's a -- re@lly-weird {file&name} (with + Plus and__1% #of# [\$qRots\$!]).mov"
+filename="$1"
+
+cleaned=$(sanitize_file_name "$filename")
+
+echo original : "$filename"
+echo sanitised: "$cleaned"
+
