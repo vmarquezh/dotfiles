@@ -1,0 +1,38 @@
+#!/bin/bash
+
+DIR=""
+FLE=""
+ACTIONMSG="Changed"
+MSG=""
+COMMITS="NO"
+
+test "$1" == "--commit" && ACTIONMSG="Committing"
+
+doCommit() {
+  MSG=$(head -1 "$FLE" | sed 's/#\+ *//')
+  echo "$ACTIONMSG: $DIR - $MSG"
+  if test "$ACTIONMSG" == "Committing"; then
+    git add -A "$DIR"
+    git commit -m "$MSG" > /dev/null
+    COMMITS="YES"
+  fi
+}
+
+CHANGES="$(git status --porcelain | cut -c4-)"
+
+while IFS= read -r CHANGE; do
+  if [[ "$CHANGE" =~ ^[0-9]{14}/$ ]]; then
+    DIR="$CHANGE"
+    FLE="$DIR""README.md"
+    doCommit
+  elif [[ "$CHANGE" =~ ^[0-9]{14}/README\.md$ ]]; then
+    DIR="$(echo "$CHANGE" | cut -c1-14)/"
+    FLE="$CHANGE"
+    doCommit
+  fi
+done < <(printf '%s\n' "$CHANGES")
+
+if test "$COMMITS" == "YES"; then
+  echo "Commits done. Remember to push changes to central repository."
+fi
+
