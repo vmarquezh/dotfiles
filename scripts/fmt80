@@ -1,0 +1,29 @@
+#!/bin/bash
+
+WIDTH=80
+LFPREFIX='\n'
+TEXT=""
+
+# If input from stdin
+if (( $# == 0 )) ; then
+    TEXT=$(cat)
+    LFPREFIX=''
+else
+    # Input as arguments
+    TEXT="$@"
+fi
+
+RESULT=$(fmt -w $WIDTH <<< "$LFPREFIX$TEXT")
+
+# Copy to Linux clipboard.
+if [ xset q &>/dev/null ]; then
+    echo -e "$RESULT" | xclip
+fi
+
+# Copy to Windows clipboard.
+if [ `builtin type -p clip.exe` ]; then
+    echo -e "$RESULT" | clip.exe
+fi
+
+echo -e "$RESULT"
+
