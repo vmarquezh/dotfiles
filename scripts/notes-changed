@@ -10,7 +10,7 @@ test "$1" == "--commit" && ACTIONMSG="Committing"
 
 doCommit() {
   MSG=$(head -1 "$FLE" | sed 's/#\+ *//')
-  echo "$ACTIONMSG: $DIR - $MSG"
+  echo "$ACTIONMSG ($CHGTYPE): $DIR - $MSG"
   if test "$ACTIONMSG" == "Committing"; then
     git add -A "$DIR"
     git commit -m "$MSG" > /dev/null
@@ -18,9 +18,9 @@ doCommit() {
   fi
 }
 
-CHANGES="$(git status --porcelain | cut -c4-)"
+CHANGES="$(git status --porcelain)"
 
-while IFS= read -r CHANGE; do
+while read -r CHGTYPE CHANGE; do
   if [[ "$CHANGE" =~ ^[0-9]{14}/$ ]]; then
     DIR="$CHANGE"
     FLE="$DIR""README.md"
