@@ -18,18 +18,19 @@ doCommit() {
   fi
 }
 
-CHANGES="$(git status --porcelain)"
+CHANGES="$(git status --porcelain | sort -b -k 2)"
 
 while read -r CHGTYPE CHANGE; do
-  if [[ "$CHANGE" =~ ^[0-9]{14}/$ ]]; then
-    DIR="$CHANGE"
-    FLE="$DIR""README.md"
-    doCommit
-  elif [[ "$CHANGE" =~ ^[0-9]{14}/README\.md$ ]]; then
-    DIR="$(echo "$CHANGE" | cut -c1-14)/"
-    FLE="$CHANGE"
-    doCommit
+  DIR="$(echo "$CHANGE" | cut -c1-14)/"
+  FLE="$DIR""README.md"
+  if test "$CHGTYPE" == "??"; then      # New file (could be != README.md)
+    TYPEMSG="New......"
+  elif test "$CHGTYPE" == "M"; then     # File modified (could be != README.md)
+    TYPEMSG="Changes.:"
+  elif test "$CHGTYPE" == "D"; then     # File deleted.
+    TYPEMSG="Removals:"
   fi
+  echo "$TYPEMSG $DIR - $CHANGE"
 done < <(printf '%s\n' "$CHANGES")
 
 if test "$COMMITS" == "YES"; then
