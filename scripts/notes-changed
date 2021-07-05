@@ -17,6 +17,7 @@ doCommit() {
 }
 
 CHANGES="$(git status --porcelain | sort -b -k 2)"
+test -n "$CHANGES" || exit 0
 
 while read -r CHGTYPE CHANGE; do
   DIR="$(echo "$CHANGE" | cut -c1-14)/"
