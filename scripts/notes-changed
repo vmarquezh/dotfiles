@@ -2,38 +2,63 @@
 
 DIR=""
 FLE=""
-ACTIONMSG="Changed"
+ACTIONMSG=
 MSG=""
 COMMITS="NO"
+
+tabs 13 29 31
 
 test "$1" == "--commit" && ACTIONMSG="Committing"
 
 doCommit() {
-  MSG=$(head -1 "$FLE" | sed 's/#\+ *//')
-  echo "$ACTIONMSG ($CHGTYPE): $DIR - $MSG"
-  if test "$ACTIONMSG" == "Committing"; then
-    git add -A "$DIR"
-    git commit -m "$MSG" > /dev/null
-    COMMITS="YES"
-  fi
+  git add -A "$1"
+  git commit -m "$2" > /dev/null
+  COMMITS="YES"
 }
 
 CHANGES="$(git status --porcelain | sort -b -k 2)"
 
 while read -r CHGTYPE CHANGE; do
   DIR="$(echo "$CHANGE" | cut -c1-14)/"
-  FLE="$DIR""README.md"
-  if test "$CHGTYPE" == "??"; then      # New file (could be != README.md)
-    TYPEMSG="New......"
-  elif test "$CHGTYPE" == "M"; then     # File modified (could be != README.md)
-    TYPEMSG="Changes.:"
-  elif test "$CHGTYPE" == "D"; then     # File deleted.
-    TYPEMSG="Removals:"
+  FLE="${CHANGE#*/}"
+  ISATTACHMENT=
+  test -n "$FLE" -a "$FLE" != "README.md" && ISATTACHMENT="*"
+  if test "$CHGTYPE" == "??"; then       # New
+    TYPEMSG="New"
+  elif test "$CHGTYPE" == "M"; then      # Modified
+    TYPEMSG="Changes" 
+  elif test "$CHGTYPE" == "D"; then      # Deleted
+    TYPEMSG="Removals" 
+  else                                   # Something else (unknown)
+    TYPEMSG="(unknown)"
   fi
-  echo "$TYPEMSG $DIR - $CHANGE"
+
+  TITLE="(unknown)"
+  if test -f "$DIR/README.md"; then
+    TITLE=$(head -1 "$DIR/README.md" | sed 's/#\+ *//')
+  else
+    i=1
+    while read CHash; do
+      if test -n "$CHash"; then
+        TITLE="(removed) "$(git show "$CHash":"$DIR"README.md | head -n 1 | sed 's/#\+ *//')
+        break
+      fi
+      i=$((i + 1))
+      test $i -gt 3 && break
+    done <<< $(git log --all --pretty="%H" -- $DIR/README.md)
+  fi
+
+  if test "$ACTIONMSG" == "Committing"; then
+    echo -e "$ACTIONMSG\t$DIR\t$ISATTACHMENT\t$TITLE"
+    #doCommit "$DIR" "$TITLE" 
+  else
+    echo -e "$TYPEMSG\t$DIR\t$ISATTACHMENT\t$TITLE"
+  fi
 done < <(printf '%s\n' "$CHANGES")
 
 if test "$COMMITS" == "YES"; then
   echo "Commits done. Remember to push changes to central repository."
 fi
+
+tabs -8
 
