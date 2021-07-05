@@ -50,7 +50,7 @@ while read -r CHGTYPE CHANGE; do
 
   if test "$ACTIONMSG" == "Committing"; then
     echo -e "$ACTIONMSG\t$DIR\t$ISATTACHMENT\t$TITLE"
-    #doCommit "$DIR" "$TITLE" 
+    doCommit "$DIR" "$TITLE"
   else
     echo -e "$TYPEMSG\t$DIR\t$ISATTACHMENT\t$TITLE"
   fi
