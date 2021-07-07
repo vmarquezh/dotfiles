@@ -5,8 +5,11 @@ else
     echo "Some things from Dotfiles may not work."
 fi
 
-test -r "$HOME/.dotfiles/shell.d/colors.sh" && source "$HOME/.dotfiles/shell.d/colors.sh"
-test -r "$HOME/.dotfiles/shell.d/termcap-colors.sh" && source "$HOME/.dotfiles/shell.d/termcap-colors.sh"
+test -r "$HOME/.dotfiles/shell.d/colors.sh" \
+  && source "$HOME/.dotfiles/shell.d/colors.sh"
+
+test -r "$HOME/.dotfiles/shell.d/termcap-colors.sh" \
+  && source "$HOME/.dotfiles/shell.d/termcap-colors.sh"
 
 if command -v dircolors &>/dev/null; then
   if test -r $HOME/.dotfiles/shell.d/dircolors; then
