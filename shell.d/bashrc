@@ -45,10 +45,26 @@ pathprepend \
 test -r ~/.dotfiles/shell.d/bash_aliases \
   && . ~/.dotfiles/shell.d/bash_aliases
 
+# Call Dotfiles Private
+
+test -r ~/.dotfiles-private/shell.d/bashrc \
+  && . ~/.dotfiles-private/shell.d/bashrc
+
 test -r ~/.dotfiles-private/shell.d/bash_aliases \
   && . ~/.dotfiles-private/shell.d/bash_aliases
+
+# Call Dotfiles Local
+
+test -r ~/.dotfiles-local/shell.d/bashrc \
+  && . ~/.dotfiles-local/shell.d/bashrc
+
 test -r ~/.dotfiles-local/shell.d/bash_aliases \
   && . ~/.dotfiles-local/shell.d/bash_aliases
+
+# Call Dotfiles Work 
+test -r ~/.dotfiles-work/shell.d/bashrc \
+  && . ~/.dotfiles-work/shell.d/bashrc
+
 test -r ~/.dotfiles-work/shell.d/bash_aliases \
   && . ~/.dotfiles-work/shell.d/bash_aliases
 
